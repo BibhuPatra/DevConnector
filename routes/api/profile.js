@@ -257,56 +257,6 @@ router.delete('/', auth, async (req, res) => {
 	}
 });
 
-// @route           Put api/profile/
-// @desc            add profile experience
-// acsess           Private
-
-router.put(
-	'/experience',
-	[
-		auth,
-		[check('title', 'Title is required').notEmpty()],
-		[check('company', 'Company is required').notEmpty()],
-		[check('from', 'From date is required').notEmpty()],
-	],
-	async (req, res) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty())
-			return res.status(400).json({ errors: errors.array() });
-
-		const {
-			title,
-			company,
-			location,
-			from,
-			to,
-			current,
-			description,
-		} = req.body;
-		//building new object
-		const newExp = {
-			title,
-			company,
-			location,
-			from,
-			to,
-			current,
-			description,
-		};
-
-		try {
-			const profile = await Profile.findOne({ user: req.user.id });
-			profile.experience.unshift(newExp);
-			await profile.save();
-
-			return res.json(profile);
-		} catch (err) {
-			console.error(err.message);
-			res.status(500).send('Server Error');
-		}
-	}
-);
-
 //@route  Delete api/experence/:exp_id
 //@desc   delete experience posts
 //@acsess Private
@@ -332,7 +282,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 });
 
 // @route           Put api/profile/education
-// @desc            add profile aducation
+// @desc            add profile education
 // acsess           Private
 
 router.put(
