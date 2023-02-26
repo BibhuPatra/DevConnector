@@ -17,15 +17,14 @@ const Login = ({ login, isAuthenticated }) => {
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		login(email, password);
-		console.log(fromData);
+		console.log(email, password);
 	};
 
 	//redirect if login
-	if (isAuthenticated) return <Navigate to='/dasboard' />;
+	if (isAuthenticated) return <Navigate to='/dashboard' />;
 
 	return (
 		<section className='container'>
-			{/* <div className='alert alert-danger'>Invalid credentials</div> */}
 			<h1 className='large text-primary'>Sign In</h1>
 			<p className='lead'>
 				<i className='fas fa-user'></i> Sign into Your Account

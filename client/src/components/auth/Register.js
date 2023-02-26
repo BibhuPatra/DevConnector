@@ -28,7 +28,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 	};
 
 	//if register successfully, then redirect
-	if (isAuthenticated) return <Navigate to='/dasboard' />;
+	if (isAuthenticated) return <Navigate to='/dashboard' />;
 
 	return (
 		<section className='container'>
