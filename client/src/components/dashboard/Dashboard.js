@@ -1,7 +1,7 @@
-import { Fragment, React, useEffect, useState } from 'react';
+import { Fragment, React, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
@@ -10,14 +10,13 @@ import Education from './Education';
 
 const Dashboard = ({
 	getCurrentProfile,
+	deleteAccount,
 	auth: { user },
 	profile: { profile, loading },
 }) => {
-	const [loadProfile, setloadProfile] = useState(0);
 	useEffect(() => {
 		getCurrentProfile();
-		console.log('Dash', profile);
-	}, [getCurrentProfile, loadProfile]);
+	}, [getCurrentProfile]);
 
 	return loading && profile === !null ? (
 		<div className='container'>
@@ -28,18 +27,22 @@ const Dashboard = ({
 			<div className='container'>
 				<h1 className='large text-primary'>Dashboard</h1>
 				<p className='lead'>
-					<i className='fas fa-user'> </i> Welcome {user && user.name}
+					<i className='fas fa-user'> </i> Welcome {user?.name}
 				</p>
 				{console.log(profile)}
-				{profile !== null ? (
+				{profile ? (
 					<>
 						<DashboardActions />
-						{console.log('Check', profile)}
-						<Experience
-							deleteFlag={(e) => setloadProfile(loadProfile + 1)}
-							experience={profile?.experience}
-						/>
+						<Experience experience={profile?.experience} />
 						<Education education={profile?.education} />
+						<div className='my-2'>
+							<button
+								className='btn btn-danger'
+								onClick={() => deleteAccount()}
+							>
+								<i className='fa fa-user-minus'>Delete My Account</i>
+							</button>
+						</div>
 					</>
 				) : (
 					<>
@@ -57,6 +60,7 @@ const Dashboard = ({
 Dashboard.propTypes = {
 	auth: PropTypes.object.isRequired,
 	getCurrentProfile: PropTypes.func.isRequired,
+	deleteAccount: PropTypes.func.isRequired,
 	profile: PropTypes.object.isRequired,
 };
 
@@ -65,4 +69,6 @@ const mapStateToProps = (state) => ({
 	profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+	Dashboard
+);
