@@ -18,6 +18,7 @@ import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
 const App = () => {
 	if (localStorage.token) {
@@ -60,7 +61,16 @@ const App = () => {
 						path='add-education'
 						element={<PrivateRoute component={AddEducation} />}
 					/>
-					<Route path='posts' element={<PrivateRoute component={Posts} />} />
+					<Route
+						exact
+						path='posts'
+						element={<PrivateRoute component={Posts} />}
+					/>
+					<Route
+						exact
+						path='posts/:id'
+						element={<PrivateRoute component={Post} />}
+					/>
 				</Routes>
 			</Router>
 		</Provider>

@@ -50,6 +50,25 @@ router.get('/', auth, async (req, res) => {
 	}
 });
 
+// @route    GET api/posts/:id
+// @desc     Get post by ID
+// @access   Private
+router.get('/:id', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.id);
+
+		if (!post) {
+			return res.status(404).json({ msg: 'Post not found' });
+		}
+
+		res.json(post);
+	} catch (err) {
+		console.error(err.message);
+
+		res.status(500).send('Server Error');
+	}
+});
+
 // @route           DLETE api/posts/:id
 // @desc            delete post by id
 // acsess           Private
@@ -200,7 +219,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 		const comment = post.comments.find(
 			(comment) => comment.id === req.params.comment_id
 		);
-		//make sure commnet is there! or for each method fails it will give false as output!
+		//make sure comment is there! or for each method fails it will give false as output!
 		if (!comment) {
 			return res.status(404).json({ msg: 'Comment does not exits' });
 		}
@@ -212,12 +231,16 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 				.json({ msg: 'User Not authorised to delete this post' });
 		}
 
-		//get the remove index
-		const removeIndex = post.comments
-			.map((comment) => comment.user.toString())
-			.indexOf(req.user.id);
+		post.comments = post.comments.filter(
+			({ id }) => id !== req.params.comment_id
+		);
 
-		post.comments.splice(removeIndex, 1);
+		//get the remove index
+		// const removeIndex = post.comments
+		// 	.map((comment) => comment.user.toString())
+		// 	.indexOf(req.user.id);
+
+		// post.comments.splice(removeIndex, 1);
 
 		await post.save();
 		return res.json(post.comments);
