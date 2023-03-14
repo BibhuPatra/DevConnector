@@ -1,4 +1,4 @@
-import { Fragment, React, useEffect } from 'react';
+import { React, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -13,27 +13,21 @@ const Post = ({ getMyPost, post: { post, loading } }) => {
 	useEffect(() => {
 		getMyPost(id);
 	}, [getMyPost, id]);
-	return loading ? (
+	return loading || post === null ? (
 		<Spinner />
 	) : (
-		<Fragment>
-			<section className='container'>
-				<Link to='/posts' className='btn'>
-					Back To Posts
-				</Link>
-				<PostItem post={post} showActions={false} />
-				<CommentForm postId={post._id} />
-				<div className='comments'>
-					{post.comments.map((comment) => (
-						<CommentItem
-							key={comment._id}
-							comment={comment}
-							postId={post._id}
-						/>
-					))}
-				</div>
-			</section>
-		</Fragment>
+		<section className='container'>
+			<Link to='/posts' className='btn'>
+				Back To Posts
+			</Link>
+			<PostItem post={post} />
+			<CommentForm postId={post._id} />
+			<div className='comments'>
+				{post.comments.map((comment) => (
+					<CommentItem key={comment._id} comment={comment} postId={post._id} />
+				))}
+			</div>
+		</section>
 	);
 };
 

@@ -28,7 +28,7 @@ router.post(
 			});
 
 			const post = await newPost.save();
-			console.log('User Posted!');
+			console.log('User Posted Somthing!');
 			res.json(post);
 		} catch (err) {
 			console.error(err.message);
@@ -166,7 +166,7 @@ router.post(
 			});
 
 			const post = await newPost.save();
-			console.log('User Posted!');
+			console.log('User Posted Something!');
 			res.json(post);
 		} catch (err) {
 			console.error(err.message);

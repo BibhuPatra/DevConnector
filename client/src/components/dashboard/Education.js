@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Fragment } from 'react';
-import Moment from 'react-moment';
+import formatDate from '../../utils/formatDate';
 import { deleteEducation } from '../../actions/profile';
+import Button from 'react-bootstrap/esm/Button';
 
 const Education = ({ education, deleteEducation }) => {
+	const [showResults, setShowResults] = useState(false);
 	const educations = education.map((edu) => (
 		<tr key={edu._id}>
 			<td>{edu.school}</td>
 			<td className='hide-sm'>{edu.degree}</td>
 			<td className='hide-sm'>{edu.fieldofstudy}</td>
 			<td>
-				<Moment format='YYYY/MM/DD'>{edu.from}</Moment> -{' '}
-				{edu.to === null ? (
-					' Now'
-				) : (
-					<Moment format='YYYY/MM/DD'>{edu.to}</Moment>
-				)}
+				{formatDate(edu.from)} - {edu.to ? formatDate(edu.to) : 'Now'}
 			</td>
 			<td>
 				<buttton
@@ -34,18 +31,30 @@ const Education = ({ education, deleteEducation }) => {
 	return (
 		<Fragment>
 			<h2 className='my-2'>Education Credentials</h2>
-			<table className='table'>
-				<thead>
-					<tr>
-						<th>School</th>
-						<th className='hide-sm'>Degree</th>
-						<th className='hide-sm'>Feild Of study</th>
-						<th className='hide-sm'>Years</th>
-						<th className='hide-sm'>Action</th>
-					</tr>
-				</thead>
-				<tbody>{educations}</tbody>
-			</table>
+			<Button
+				className='btn btn-primary'
+				onClick={() => {
+					setShowResults(!showResults);
+				}}
+			>
+				Veiw Education History
+			</Button>
+			{showResults ? (
+				<Fragment>
+					<table className='table'>
+						<thead>
+							<tr>
+								<th>School</th>
+								<th className='hide-sm'>Degree</th>
+								<th className='hide-sm'>Feild Of study</th>
+								<th className='hide-sm'>Years</th>
+								<th className='hide-sm'>Action</th>
+							</tr>
+						</thead>
+						<tbody>{educations}</tbody>
+					</table>
+				</Fragment>
+			) : null}
 		</Fragment>
 	);
 };

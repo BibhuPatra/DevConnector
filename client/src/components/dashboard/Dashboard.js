@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
+import Button from 'react-bootstrap/esm/Button';
 
 const Dashboard = ({
 	getCurrentProfile,
@@ -26,10 +27,21 @@ const Dashboard = ({
 		<Fragment>
 			<div className='container'>
 				<h1 className='large text-primary'>Dashboard</h1>
-				<p className='lead'>
-					<i className='fas fa-user'> </i> Welcome {user?.name}
-				</p>
-				{console.log(profile)}
+				<div className='profile hide-sm p-1'>
+					<a
+						href='https://en.gravatar.com/'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						<img className='small-img' src={user?.avatar} alt='gravatar' />
+					</a>
+					<p className='lead'>
+						<div>
+							<i className='fa-solid fa-id-card'></i> Welcome{' '}
+							<span className=''>{user?.name}</span>
+						</div>
+					</p>
+				</div>
 				{profile ? (
 					<>
 						<DashboardActions />

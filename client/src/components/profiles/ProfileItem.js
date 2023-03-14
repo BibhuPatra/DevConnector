@@ -16,7 +16,6 @@ const ProfileItem = ({
 			<img src={avatar} alt='' className='round-img' />
 			<div>
 				<h2>{name}</h2>
-				{/* {console.log('Checking', profile.skills)} */}
 				<p>
 					{status} {company && <span> at {company}</span>}
 				</p>

@@ -11,7 +11,7 @@ const Posts = ({ getPost, post: { posts, loading } }) => {
 		getPost();
 	}, [getPost]);
 
-	return loading ? (
+	return loading && posts == null ? (
 		<div className='container'>
 			<Spinner />
 		</div>

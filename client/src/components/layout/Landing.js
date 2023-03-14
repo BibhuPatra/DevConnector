@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import sample from '../../img/video.mp4';
 
 const Landing = ({ isAuthenticated }) => {
 	if (isAuthenticated) {
@@ -10,6 +11,9 @@ const Landing = ({ isAuthenticated }) => {
 
 	return (
 		<section className='landing'>
+			<video className='videoTag' autoPlay loop muted>
+				<source src={sample} type='video/mp4' />
+			</video>
 			<div className='dark-overlay'>
 				<div className='landing-inner'>
 					<h1 className='x-large'>Developer Connector</h1>

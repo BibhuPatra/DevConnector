@@ -19,7 +19,6 @@ router.get('/me', auth, async (req, res) => {
 			['avatar']
 		);
 		if (!profile) return res.status(400).json({ msg: 'Profile Not Found' });
-		console.log('Test');
 		return res.json(profile);
 	} catch (err) {
 		console.error(err.message);
@@ -116,7 +115,6 @@ router.get('/', async (req, res) => {
 			'avatar',
 		]);
 		res.json(allProfiles);
-		console.log('All Profiles Updated');
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server Error');
@@ -135,7 +133,6 @@ router.get('/user/:user_id', async (req, res) => {
 
 		if (!profile) return res.status(400).json({ msg: 'Profile Not Found' });
 		res.json(profile);
-		console.log(' Paticular Profile Updated');
 	} catch (err) {
 		console.error(err.message);
 		if (err.kind == 'ObjectId') {
@@ -157,7 +154,6 @@ router.delete('/', auth, async (req, res) => {
 		//Remove User
 		await User.findOneAndRemove({ _id: req.user.id });
 		res.json({ msg: 'User Deleted' });
-		console.log('All Profiles Updated');
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server Error');

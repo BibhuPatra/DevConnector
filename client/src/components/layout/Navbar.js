@@ -8,22 +8,28 @@ import { Fragment } from 'react';
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 	const authLinks = (
 		<ul>
-			<li>
-				<Link to='/profiles'>Developers</Link>
-			</li>
-			<li>
-				<Link to='/posts'>Posts</Link>
-			</li>
-			<li>
-				<Link to='/dashboard'>
-					<i className='fas fa-user' />{' '}
-					<span className='hide-sm'>Dashboard</span>
+			<li className='hvr-icon-bounce'>
+				<Link to='/profiles'>
+					Developers <i className='fa-solid fa-code hvr-icon'></i>
 				</Link>
 			</li>
-			<li>
+			<li className='hvr-icon-rotate'>
+				<Link to='/posts'>
+					Posts <i className='fa fa-paperclip hvr-icon'></i>
+				</Link>
+			</li>
+			<li className='hvr-icon-pop'>
+				<Link to='/dashboard'>
+					<span className='hide-sm'>
+						Dashboard <i className='fa fa-user-secret hvr-icon'></i>
+					</span>
+				</Link>
+			</li>
+			<li className='hvr-icon-buzz-out logout'>
 				<a onClick={logout} href='#!'>
-					<i className='fas fa-sign-out-alt' />{' '}
-					<span className='hide-sm'>Logout</span>
+					<span className='hide-sm'>
+						Logout <i className='fa fa-lock hvr-icon'></i>
+					</span>
 				</a>
 			</li>
 		</ul>
@@ -31,24 +37,36 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
 	const guestLinks = (
 		<ul>
-			<li>
-				<Link to='/profiles'>Developers</Link>
+			<li className='hvr-icon-bounce'>
+				<Link to='/profiles'>
+					Developers <i className='fa-solid fa-code hvr-icon'></i>
+				</Link>
 			</li>
-			<li>
-				<Link to='/register'>Register</Link>
+			{'\u00A0'}
+			{'\u00A0'}
+
+			<li className='hvr-icon-bounce'>
+				<Link to='/register'>
+					Register <i className='fa solid fa-id-card hvr-icon'></i>
+				</Link>
 			</li>
-			<li>
-				<Link to='/login'>Login</Link>
+			{'\u00A0'}
+			{'\u00A0'}
+			<li className='hvr-icon-bounce'>
+				<Link to='/login'>
+					Login <i className='fa-solid fa-user-check hvr-icon'></i>
+				</Link>
 			</li>
+			{'\u00A0'}
+			{'\u00A0'}
 		</ul>
 	);
 
 	return (
 		<nav className='navbar bg-dark'>
 			<h1>
-				<Link to='/'>
-					<i className='fas fa-code'></i>
-					DevConnector
+				<Link to='/' className='hvr-icon-bounce'>
+					<i class='fa-brands fa-bilibili hvr-icon'></i> DevConnector
 				</Link>
 			</h1>
 			{!loading && (

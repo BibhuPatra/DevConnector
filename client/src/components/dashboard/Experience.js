@@ -1,24 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Fragment } from 'react';
-import Moment from 'react-moment';
+import formatDate from '../../utils/formatDate';
 import { deleteExperience } from '../../actions/profile';
 import Button from 'react-bootstrap/Button';
 
 const Experience = ({ experience, deleteExperience, deleteFlag }) => {
+	const [showResults, setShowResults] = useState(false);
 	const experiences = experience.map((exp) => (
 		<tr key={exp._id}>
 			<td>{exp.company}</td>
 			<td className='hide-sm'>{exp.title}</td>
 			<td className='hide-sm'>{exp.location}</td>
 			<td>
-				<Moment format='YYYY/MM/DD'>{exp.from}</Moment> -{' '}
-				{exp.to === null ? (
-					' Now'
-				) : (
-					<Moment format='YYYY/MM/DD'>{exp.to}</Moment>
-				)}
+				{formatDate(exp.from)} - {exp.to ? formatDate(exp.to) : 'Now'}
 			</td>
 			<td>
 				<Button
@@ -37,18 +33,30 @@ const Experience = ({ experience, deleteExperience, deleteFlag }) => {
 	return (
 		<Fragment>
 			<h2 className='my-2'>Experience Credentials</h2>
-			<table className='table'>
-				<thead>
-					<tr>
-						<th>Company</th>
-						<th className='hide-sm'>Title</th>
-						<th className='hide-sm'>Location</th>
-						<th className='hide-sm'>Years</th>
-						<th className='hide-sm'>Action</th>
-					</tr>
-				</thead>
-				<tbody>{experiences}</tbody>
-			</table>
+			<Button
+				className='btn btn-primary'
+				onClick={() => {
+					setShowResults(!showResults);
+				}}
+			>
+				Veiw Experience History
+			</Button>
+			{showResults && (
+				<Fragment>
+					<table className='table'>
+						<thead>
+							<tr>
+								<th>Company</th>
+								<th className='hide-sm'>Title</th>
+								<th className='hide-sm'>Location</th>
+								<th className='hide-sm'>Years</th>
+								<th className='hide-sm'>Action</th>
+							</tr>
+						</thead>
+						<tbody>{experiences}</tbody>
+					</table>
+				</Fragment>
+			)}
 		</Fragment>
 	);
 };
