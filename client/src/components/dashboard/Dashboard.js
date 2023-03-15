@@ -37,8 +37,8 @@ const Dashboard = ({
 					</a>
 					<p className='lead'>
 						<div>
-							<i className='fa-solid fa-id-card'></i> Welcome{' '}
-							<span className=''>{user?.name}</span>
+							<i className='fa-solid fa-id-card'></i> Welcome Developer{' '}
+							<div className='typing-demo'>{user?.name}</div>
 						</div>
 					</p>
 				</div>
@@ -48,12 +48,12 @@ const Dashboard = ({
 						<Experience experience={profile?.experience} />
 						<Education education={profile?.education} />
 						<div className='my-2'>
-							<button
+							<Button
 								className='btn btn-danger'
 								onClick={() => deleteAccount()}
 							>
 								<i className='fa fa-user-minus'>Delete My Account</i>
-							</button>
+							</Button>
 						</div>
 					</>
 				) : (

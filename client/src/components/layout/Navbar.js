@@ -20,16 +20,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 			</li>
 			<li className='hvr-icon-pop'>
 				<Link to='/dashboard'>
-					<span className='hide-sm'>
-						Dashboard <i className='fa fa-user-secret hvr-icon'></i>
-					</span>
+					Dashboard <i className='fa fa-user-secret hvr-icon'></i>
 				</Link>
 			</li>
 			<li className='hvr-icon-buzz-out logout'>
-				<a onClick={logout} href='#!'>
-					<span className='hide-sm'>
-						Logout <i className='fa fa-lock hvr-icon'></i>
-					</span>
+				<a onClick={logout} href='/'>
+					Logout <i className='fa fa-lock hvr-icon'></i>
 				</a>
 			</li>
 		</ul>
@@ -66,7 +62,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 		<nav className='navbar bg-dark'>
 			<h1>
 				<Link to='/' className='hvr-icon-bounce'>
-					<i class='fa-brands fa-bilibili hvr-icon'></i> DevConnector
+					<i className='fa-brands fa-bilibili hvr-icon'></i> DevConnector
 				</Link>
 			</h1>
 			{!loading && (
