@@ -11,7 +11,7 @@ const Landing = ({ isAuthenticated }) => {
 
 	return (
 		<section className='landing'>
-			<video className='videoTag' autoPlay loop muted>
+			<video className='video' autoPlay loop muted>
 				<source src={sample} type='video/mp4' />
 			</video>
 			<div className='dark-overlay'>

@@ -9,7 +9,7 @@ const Login = ({ login, isAuthenticated }) => {
 		email: '',
 		password: '',
 	});
-	const { email, password } = fromData;
+		const { email, password } = fromData;
 
 	const onChange = (e) =>
 		setFromData({ ...fromData, [e.target.name]: e.target.value });
