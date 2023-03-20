@@ -1022,3 +1022,11 @@ button {
 		transform: translateY(0);
 	}
 }
+.spinner {
+	display: block;
+	width: 7em;
+	margin: 10em auto;
+}
+.bg-design {
+	background-image: url('./img/About.jpg');
+}
