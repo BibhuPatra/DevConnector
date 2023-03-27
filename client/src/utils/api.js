@@ -4,7 +4,7 @@ import { LOGOUT } from '../actions/types';
 
 // Create an instance of axios
 export const api = axios.create({
-	baseURL: 'https://wecode-jlsa.onrender.com/api',
+	baseURL: 'https://wecode-jlsa.onrender.com',
 	headers: {
 		'Content-Type': 'application/json',
 	},
