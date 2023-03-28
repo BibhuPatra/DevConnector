@@ -1,9 +1,11 @@
 const { application } = require('express');
 const express = require('express');
-const res = require('express/lib/response');
 const connectDB = require('./config/db');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 //connect Database
 connectDB();
