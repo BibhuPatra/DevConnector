@@ -86,7 +86,7 @@ const ProfileForm = ({
 						? 'Lets get some information to make your'
 						: 'Add some changes to your profile'}
 				</p>
-				<small>* = required field</small>
+				<small style={{ color: 'red' }}>* required field</small>
 				<form className='form' onSubmit={(e) => onSubmit(e)}>
 					<div className='form-group'>
 						<select name='status' value={status} onChange={(e) => onChange(e)}>

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { api as axios } from '../utils/api';
 import { setAlert } from './alert';
 import {
 	ADD_COMMENT,
