@@ -1,4 +1,4 @@
-import { Fragment, React, useEffect } from 'react';
+import { React, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
@@ -24,48 +24,43 @@ const Dashboard = ({
 			<Spinner />
 		</div>
 	) : (
-		<Fragment>
-			<div className='container'>
-				<h1 className='large text-primary'>Dashboard</h1>
-				<div className='profile hide-sm p-1'>
-					<a
-						href='https://en.gravatar.com/'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<img className='small-img' src={user?.avatar} alt='gravatar' />
-					</a>
-					<p className='lead'>
-						<div>
-							<i className='fa-solid fa-id-card'></i> Welcome Developer{' '}
-							<div className='typing-demo'>{user?.name}</div>
-						</div>
-					</p>
-				</div>
-				{profile ? (
-					<>
-						<DashboardActions />
-						<Experience experience={profile?.experience} />
-						<Education education={profile?.education} />
-						<div className='my-2'>
-							<Button
-								className='btn btn-danger'
-								onClick={() => deleteAccount()}
-							>
-								<i className='fa fa-user-minus'>Delete My Account</i>
-							</Button>
-						</div>
-					</>
-				) : (
-					<>
-						<p>You have not yet setup a profile, please add some info </p>
-						<Link to='/create-profile' className='btn btn-primary my-1'>
-							Create Profile
-						</Link>
-					</>
-				)}
+		<section className='container'>
+			<h1 className='large text-primary'>Dashboard</h1>
+			<div className='profile hide-sm p-1'>
+				<a
+					href='https://en.gravatar.com/'
+					target='_blank'
+					rel='noopener noreferrer'
+				>
+					<img className='small-img' src={user?.avatar} alt='gravatar' />
+				</a>
+				<p className='lead'>
+					<div>
+						<i className='fa-solid fa-id-card'></i> Welcome Developer{' '}
+						<div className='typing-demo'>{user?.name}</div>
+					</div>
+				</p>
 			</div>
-		</Fragment>
+			{profile ? (
+				<>
+					<DashboardActions />
+					<Experience experience={profile?.experience} />
+					<Education education={profile?.education} />
+					<div className='my-2'>
+						<Button className='btn btn-danger' onClick={() => deleteAccount()}>
+							<i className='fa fa-user-minus'>Delete My Account</i>
+						</Button>
+					</div>
+				</>
+			) : (
+				<>
+					<p>You have not yet setup a profile, please add some info </p>
+					<Link to='/create-profile' className='btn btn-primary my-1'>
+						Create Profile
+					</Link>
+				</>
+			)}
+		</section>
 	);
 };
 
