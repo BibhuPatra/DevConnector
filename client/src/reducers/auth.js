@@ -1,9 +1,9 @@
 import {
 	REGISTER_SUCCESS,
-	REGISTER_FAIL,
+	// REGISTER_FAIL,
 	USER_LOADED,
 	AUTH_ERROR,
-	LOGIN_FAIL,
+	// LOGIN_FAIL,
 	LOGIN_SUCCESS,
 	LOGOUT,
 	ACCOUNT_DELETED,
@@ -36,17 +36,15 @@ function authReducer(state = initialState, action) {
 				loading: false,
 			};
 
-		case REGISTER_FAIL:
 		case AUTH_ERROR:
-		case LOGIN_FAIL:
 		case LOGOUT:
 		case ACCOUNT_DELETED:
-			localStorage.removeItem('token');
 			return {
 				...state,
 				token: null,
 				isAuthenticated: false,
 				loading: false,
+				user: null,
 			};
 		default:
 			return state;
